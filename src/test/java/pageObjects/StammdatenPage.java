@@ -7,7 +7,7 @@ import utils.GeneralUtils;
 
 public class StammdatenPage {
     private final WebDriver webDriver;
-    GeneralUtils generalUtils = null;
+    GeneralUtils generalUtils;
 
     public StammdatenPage(WebDriver webDriver) {
         this.webDriver = webDriver;
@@ -24,11 +24,12 @@ public class StammdatenPage {
 
 
     public void fillStammdaten(String newBenutzerkennungValue, String newNachnameValue, String newVornameValue,
-                               String newPersonnelNum, String newMobileNum, String newEMail, String mail) {
+                               String newPersonnelNum,String newPersonnelNumHR, String newMobileNum, String newEMail) {
         setBenutzerkennung(newBenutzerkennungValue);
         setNachname(newNachnameValue);
         setVorname(newVornameValue);
         setPersonnelNum(newPersonnelNum);
+        setPersonnelNumHR(newPersonnelNumHR);
         setMobilNum(newMobileNum);
         setEMail(newEMail);
     }

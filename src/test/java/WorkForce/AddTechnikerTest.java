@@ -6,6 +6,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import pageObjects.MitarbeiterPool;
 import pageObjects.StammdatenPage;
 import utils.GeneralUtils;
 
@@ -32,8 +33,7 @@ public class AddTechnikerTest {
         StammdatenPage stammdatenPage = new StammdatenPage(driver);
         stammdatenPage.fillStammdaten("Anna1230", "Fuchs", "Anna",
                 "123_001","456_001", "016000000", "test@test.com");
-//
-        //fill the 1st page of the form
+
 
 
         //go the 2nd page of the form
@@ -53,11 +53,10 @@ public class AddTechnikerTest {
         poolButton.click();
 
         // fill the 3rd page
-
-        generalUtils.fillDropDown("//input[@id='Aktueller-district-autocomplete-id']", "Berlin", "//ul[@id='Aktueller-district-autocomplete-id-listbox']//li[contains(text(), 'Berlin')]");
-        generalUtils.fillDropDown("//input[@id='Aktueller-pool-autocomplete-id']", "FS5556_05", "//ul[@id='Aktueller-pool-autocomplete-id-listbox']//li[contains(text(), 'FS5556_05')]");
-        generalUtils.fillDropDown("//input[@id='Haupt-district-autocomplete-id']", "Berlin", "//ul[@id='Haupt-district-autocomplete-id-listbox']//li[contains(text(), 'Berlin')]");
-        generalUtils.fillDropDownShort("Haupt-pool-autocomplete-id", "FS5556_05"); //короткий вариант тех же методов выше
+        MitarbeiterPool mitarbeiterPool = new MitarbeiterPool(driver);
+        mitarbeiterPool.fillMitarbeiterPool("Berlin","FS5556_05",
+                "Berlin","FS5556_05");
+       //короткий вариант тех же методов выше
 
         //technicker anlegen
 
