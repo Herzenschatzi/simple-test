@@ -28,16 +28,12 @@ public class AddTechnikerTest {
 
         //go to the techniker creation form
 
-        StammdatenPage stammdatenPage = new StammdatenPage(driver);
-        stammdatenPage.setBenutzerkennung("Anna1230");
-        stammdatenPage.setNachname("Fuchs");
 
+        StammdatenPage stammdatenPage = new StammdatenPage(driver);
+        stammdatenPage.fillStammdaten("Anna1230","Fuchs","Anna");
+//
         //fill the 1st page of the form
-        generalUtils.fillInputByXpath("given_name-input-id", "Anna");
-        generalUtils.fillInputByXpath("personnel_number-input-id", "123_001");
-        generalUtils.fillInputByXpath("personnel_number_hr-input-id", "456_001");
-        generalUtils.fillInputByXpath("mobile-input-id", "016000000");
-        generalUtils.fillInputByXpath("email-address-input-id", "test@test.com");
+
 
         //go the 2nd page of the form
         WebElement disposButton = driver.findElement(By.xpath("//div[@id='navigation_header-disposition-id']//button"));
