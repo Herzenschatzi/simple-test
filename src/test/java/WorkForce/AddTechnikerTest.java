@@ -6,7 +6,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import utils.PageUtils;
+import pageObjects.StammdatenPage;
+import utils.GeneralUtils;
 
 import java.time.Duration;
 
@@ -14,7 +15,7 @@ public class AddTechnikerTest {
     @Test
     public void addTechniker() throws InterruptedException {
         WebDriver driver = new ChromeDriver();
-        PageUtils pageUtils = new PageUtils(driver);
+        GeneralUtils generalUtils = new GeneralUtils(driver);
 
         WebDriverWait waiter = new WebDriverWait(driver, Duration.ofSeconds(5));//wait until butt appears, but max 5
         driver.get("http://localhost:3000/workforce-resource-local");
@@ -27,25 +28,27 @@ public class AddTechnikerTest {
 
         //go to the techniker creation form
 
+        StammdatenPage stammdatenPage = new StammdatenPage(driver);
+        stammdatenPage.setBenutzerkennung("Anna1230");
+        stammdatenPage.setNachname("Fuchs");
+
         //fill the 1st page of the form
-        pageUtils.fillInputByXpath("//input[@id='origin-id-input-id']", "Anna123");
-        pageUtils.fillInputByXpath("//input[@id='family_name-input-id']", "Fuchs");
-        pageUtils.fillInputByXpath("//input[@id='given_name-input-id']", "Anna");
-        pageUtils.fillInputByXpath("//input[@id='personnel_number-input-id']", "123");
-        pageUtils.fillInputByXpath("//input[@id='personnel_number_hr-input-id']", "456");
-        pageUtils.fillInputByXpath("//input[@id='mobile-input-id']", "016000000");
-        pageUtils.fillInputByXpath("//input[@id='email-address-input-id']", "test@test.com");
+        generalUtils.fillInputByXpath("given_name-input-id", "Anna");
+        generalUtils.fillInputByXpath("personnel_number-input-id", "123_001");
+        generalUtils.fillInputByXpath("personnel_number_hr-input-id", "456_001");
+        generalUtils.fillInputByXpath("mobile-input-id", "016000000");
+        generalUtils.fillInputByXpath("email-address-input-id", "test@test.com");
 
         //go the 2nd page of the form
         WebElement disposButton = driver.findElement(By.xpath("//div[@id='navigation_header-disposition-id']//button"));
         disposButton.click();
         //fill the 2nd page of the form
 
-        pageUtils.fillInputByXpath("//input[@id='postcode-input-id']", "01605");
-        pageUtils.fillInputByXpath("//input[@id='city-input-id']", "Cologne");
-        pageUtils.fillInputByXpath("//input[@id='street-name-input-id']", "Walder");
-        pageUtils.fillInputByXpath("//input[@id='street-nr-first-input-id']", "12");
-        pageUtils.fillInputByXpath("//input[@id='action-planning-group-input-id']", "Test");
+        generalUtils.fillInputByXpath("postcode-input-id", "01605");
+        generalUtils.fillInputByXpath("city-input-id", "Cologne");
+        generalUtils.fillInputByXpath("street-name-input-id", "Walder");
+        generalUtils.fillInputByXpath("street-nr-first-input-id", "12");
+        generalUtils.fillInputByXpath("action-planning-group-input-id", "Test");
 
         // go to the 3rd page
 
@@ -54,10 +57,10 @@ public class AddTechnikerTest {
 
         // fill the 3rd page
 
-        pageUtils.fillDropDown("//input[@id='Aktueller-district-autocomplete-id']", "Berlin", "//ul[@id='Aktueller-district-autocomplete-id-listbox']//li[contains(text(), 'Berlin')]");
-        pageUtils.fillDropDown("//input[@id='Aktueller-pool-autocomplete-id']", "FS5556_05", "//ul[@id='Aktueller-pool-autocomplete-id-listbox']//li[contains(text(), 'FS5556_05')]");
-        pageUtils.fillDropDown("//input[@id='Haupt-district-autocomplete-id']", "Berlin", "//ul[@id='Haupt-district-autocomplete-id-listbox']//li[contains(text(), 'Berlin')]");
-        pageUtils.fillDropDownShort("Haupt-pool-autocomplete-id", "FS5556_05"); //короткий вариант тех же методов выше
+        generalUtils.fillDropDown("//input[@id='Aktueller-district-autocomplete-id']", "Berlin", "//ul[@id='Aktueller-district-autocomplete-id-listbox']//li[contains(text(), 'Berlin')]");
+        generalUtils.fillDropDown("//input[@id='Aktueller-pool-autocomplete-id']", "FS5556_05", "//ul[@id='Aktueller-pool-autocomplete-id-listbox']//li[contains(text(), 'FS5556_05')]");
+        generalUtils.fillDropDown("//input[@id='Haupt-district-autocomplete-id']", "Berlin", "//ul[@id='Haupt-district-autocomplete-id-listbox']//li[contains(text(), 'Berlin')]");
+        generalUtils.fillDropDownShort("Haupt-pool-autocomplete-id", "FS5556_05"); //короткий вариант тех же методов выше
 
         //technicker anlegen
 
@@ -67,4 +70,3 @@ public class AddTechnikerTest {
         driver.quit();
     }
 }
-

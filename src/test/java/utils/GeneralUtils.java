@@ -4,17 +4,17 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-public class PageUtils {
+public class GeneralUtils {
 
-    private WebDriver webDriver;
+    private final WebDriver webDriver;
 
-    public PageUtils(WebDriver webDriver) {
+    public GeneralUtils(WebDriver webDriver) {
         this.webDriver = webDriver;
     }
 
-    public void fillInputByXpath(String xpath, String valueToSend) {
+    public void fillInputByXpath(String elementId, String valueToSend) {
         WebElement element = webDriver.findElement(
-                By.xpath(xpath));
+                By.id(elementId));
         element.sendKeys(valueToSend);
     }
 
@@ -31,5 +31,7 @@ public class PageUtils {
         actMPool.sendKeys(value);
         webDriver.findElement(By.xpath("//ul[@id='" + id + "-listbox']//li[contains(text(), '" + value + "')]")).click();
     }
+    
+    }
 
-}
+
