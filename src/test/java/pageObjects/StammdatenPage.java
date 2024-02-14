@@ -18,19 +18,19 @@ public class StammdatenPage {
     private final By nachname = By.id("family_name-input-id");
     private final By vorname = By.id("given_name-input-id");
     private final By personnel = By.id("personnel_number-input-id");
+    private final By personnelHR = By.id("personnel_number_hr-input-id");
+    private final By mobileNum = By.id("mobile-input-id");
+    private final By eMail = By.id("email-address-input-id");
+
 
     public void fillStammdaten(String newBenutzerkennungValue, String newNachnameValue, String newVornameValue,
-                               String newPersonnelNum) {
+                               String newPersonnelNum, String newMobileNum, String newEMail, String mail) {
         setBenutzerkennung(newBenutzerkennungValue);
         setNachname(newNachnameValue);
         setVorname(newVornameValue);
         setPersonnelNum(newPersonnelNum);
-        generalUtils.fillInputByXpath("given_name-input-id", "Anna");
-        generalUtils.fillInputByXpath("personnel_number-input-id", "123_001");
-        generalUtils.fillInputByXpath("personnel_number_hr-input-id", "456_001");
-        generalUtils.fillInputByXpath("mobile-input-id", "016000000");
-        generalUtils.fillInputByXpath("email-address-input-id", "test@test.com");
-
+        setMobilNum(newMobileNum);
+        setEMail(newEMail);
     }
 
     public void setBenutzerkennung(String newBenutzerkennungValue) {
@@ -40,17 +40,30 @@ public class StammdatenPage {
     public void setNachname(String newNachnameValue) {
         changeField(webDriver.findElement(this.nachname), newNachnameValue);
     }
+
     public void setVorname(String newVornameValue) {
         changeField(webDriver.findElement(this.vorname), newVornameValue);
 
     }
-    public void setPersonnelNum(String newPersonnelNum){
+
+    public void setPersonnelNum(String newPersonnelNum) {
         changeField(webDriver.findElement(this.personnel), newPersonnelNum);
 
     }
 
+    public void setPersonnelNumHR(String newPersonnelNumHR) {
+        changeField(webDriver.findElement(this.personnelHR), newPersonnelNumHR);
 
+    }
 
+    public void setMobilNum(String newMobileNum) {
+        changeField(webDriver.findElement(this.mobileNum), newMobileNum);
+
+    }
+
+    public void setEMail(String newEMail) {
+        changeField(webDriver.findElement(this.eMail), newEMail);
+    }
 
 
     private void changeField(WebElement element, String newValue) {

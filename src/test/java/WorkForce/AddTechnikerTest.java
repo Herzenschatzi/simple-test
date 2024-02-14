@@ -31,7 +31,7 @@ public class AddTechnikerTest {
 
         StammdatenPage stammdatenPage = new StammdatenPage(driver);
         stammdatenPage.fillStammdaten("Anna1230", "Fuchs", "Anna",
-                "123_001");
+                "123_001","456_001", "016000000", "test@test.com");
 //
         //fill the 1st page of the form
 
