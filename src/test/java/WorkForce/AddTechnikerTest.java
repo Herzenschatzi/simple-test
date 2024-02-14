@@ -55,24 +55,9 @@ public class AddTechnikerTest {
         // fill the 3rd page
 
         pageUtils.fillDropDown("//input[@id='Aktueller-district-autocomplete-id']", "Berlin", "//ul[@id='Aktueller-district-autocomplete-id-listbox']//li[contains(text(), 'Berlin')]");
-        pageUtils.fillDropDownShort("Aktueller-pool-autocomplete-id", "FS5556_05");
-
-//        WebElement actMPool = driver.findElement(
-//                By.xpath("//input[@id='Aktueller-pool-autocomplete-id']"));
-//        actMPool.sendKeys("FS5556_05");
-//        driver.findElement(By.xpath("//ul[@id='Aktueller-pool-autocomplete-id-listbox']//li[contains(text(), 'FS5556_05')]")).click();
-
-
-        WebElement hauptPoolList = driver.findElement(
-                By.xpath("//input[@id='Haupt-district-autocomplete-id']"));
-        hauptPoolList.sendKeys("Berlin");
-        driver.findElement(By.xpath("//ul[@id='Haupt-district-autocomplete-id-listbox']//li[contains(text(), 'Berlin')]")).click();
-
-
-        WebElement actHPool = driver.findElement(
-                By.xpath("//input[@id='Haupt-pool-autocomplete-id']"));
-        actHPool.sendKeys("FS5556_05");
-        driver.findElement(By.xpath("//ul[@id='Haupt-pool-autocomplete-id-listbox']//li[contains(text(), 'FS5556_05')]")).click();
+        pageUtils.fillDropDown("//input[@id='Aktueller-pool-autocomplete-id']", "FS5556_05", "//ul[@id='Aktueller-pool-autocomplete-id-listbox']//li[contains(text(), 'FS5556_05')]");
+        pageUtils.fillDropDown("//input[@id='Haupt-district-autocomplete-id']", "Berlin", "//ul[@id='Haupt-district-autocomplete-id-listbox']//li[contains(text(), 'Berlin')]");
+        pageUtils.fillDropDownShort("Haupt-pool-autocomplete-id", "FS5556_05"); //короткий вариант тех же методов выше
 
         //technicker anlegen
 
