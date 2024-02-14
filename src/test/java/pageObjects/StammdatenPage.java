@@ -17,11 +17,14 @@ public class StammdatenPage {
     private final By benutzerkennung = By.id("origin-id-input-id");
     private final By nachname = By.id("family_name-input-id");
     private final By vorname = By.id("given_name-input-id");
+    private final By personnel = By.id("personnel_number-input-id");
 
-    public void fillStammdaten(String newBenutzerkennungValue, String newNachnameValue, String newVornameValue) {
+    public void fillStammdaten(String newBenutzerkennungValue, String newNachnameValue, String newVornameValue,
+                               String newPersonnelNum) {
         setBenutzerkennung(newBenutzerkennungValue);
         setNachname(newNachnameValue);
         setVorname(newVornameValue);
+        setPersonnelNum(newPersonnelNum);
         generalUtils.fillInputByXpath("given_name-input-id", "Anna");
         generalUtils.fillInputByXpath("personnel_number-input-id", "123_001");
         generalUtils.fillInputByXpath("personnel_number_hr-input-id", "456_001");
@@ -38,8 +41,14 @@ public class StammdatenPage {
         changeField(webDriver.findElement(this.nachname), newNachnameValue);
     }
     public void setVorname(String newVornameValue) {
-        changeField(webDriver.findElement(this.nachname), newVornameValue);
+        changeField(webDriver.findElement(this.vorname), newVornameValue);
+
     }
+    public void setPersonnelNum(String newPersonnelNum){
+        changeField(webDriver.findElement(this.personnel), newPersonnelNum);
+
+    }
+
 
 
 
