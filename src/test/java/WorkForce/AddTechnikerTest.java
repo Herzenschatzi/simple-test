@@ -1,41 +1,43 @@
 package WorkForce;
 
 import org.junit.Test;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import pageObjects.DispositionPage;
 import pageObjects.MitarbeiterPool;
+import pageObjects.RessourcenPage;
 import pageObjects.StammdatenPage;
-
-import java.time.Duration;
 
 public class AddTechnikerTest {
     @Test
     public void addTechniker() throws InterruptedException {
         WebDriver driver = new ChromeDriver();
-
-        WebDriverWait waiter = new WebDriverWait(driver, Duration.ofSeconds(5));//wait until butt appears, but max 5
-        driver.get("http://localhost:3000/workforce-resource-local");
-
-        //  можно как то заиспользовать тест TechnikOpenTest  для перехода на страницу с таблицей техников?
+        RessourcenPage ressourcenPage = new RessourcenPage(driver);
+        //WebDriverWait waiter = new WebDriverWait(driver, Duration.ofSeconds(5));
+        //How to use waiter instead of all(?) sleeps in the test?
+        ressourcenPage.goToRessourcenPage();
 
         Thread.sleep(500);
-        WebElement addButton = driver.findElement(By.xpath("//*[@id='single-spa-application:@ad-portal/workforce-resource-local']//a[@class='button_link']"));
-        addButton.click();
+        //@Before
+
+//        ressourcenPage.openFilter();
+//        Thread.sleep(500);
+//        ressourcenPage.fillFilterTechniker("Anna1230");
+//        Thread.sleep(500);
+
+        //Add if else check?
+
+        ressourcenPage.addButton();
 
         Thread.sleep(2000);
 
         //go to the techniker creation form
         StammdatenPage stammdatenPage = new StammdatenPage(driver);
-        stammdatenPage.fillStammdaten("Anna1230", "Fuchs", "Anna",
+        stammdatenPage.fillStammdaten("Anna123", "Fuchs", "Anna",
                 "123_001", "456_001", "016000000", "test@test.com");
 
         //go the 2nd page of the form
         stammdatenPage.goToDisposition();
-
 
 
         //fill the 2nd page of the form
@@ -53,9 +55,28 @@ public class AddTechnikerTest {
 
         //technicker anlegen
         mitarbeiterPool.toSubmitButton();
-        //WebElement submitButton = driver.findElement(By.xpath("//*[@id=\"single-spa-application:@ad-portal/workforce-resource-local\"]//button[@id='employee-request-button-id']"));
+
 
         Thread.sleep(2000);
+//@After
+        ressourcenPage.goToRessourcenPage();
+        Thread.sleep(2000);
+
+        //delete the filtered out employee
+        ressourcenPage.openFilter();
+        Thread.sleep(500);
+        ressourcenPage.fillFilterTechniker("Anna123");
+        Thread.sleep(500);
+        ressourcenPage.openFilter();
+        Thread.sleep(500);
+        ressourcenPage.selectEmployee();
+        Thread.sleep(1000);
+        ressourcenPage.deleteEmployee();
+        Thread.sleep(1000);
+        ressourcenPage.confirmDeleteEmployee();
+
+        Thread.sleep(1000);
+
 
         driver.quit();
 
