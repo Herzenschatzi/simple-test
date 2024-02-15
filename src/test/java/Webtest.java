@@ -6,7 +6,8 @@ public class Webtest {
 
         openBrowser();
     }
-    public static void openBrowser(){
+
+    public static void openBrowser() {
         WebDriver driver = new ChromeDriver();
         driver.quit();
     }

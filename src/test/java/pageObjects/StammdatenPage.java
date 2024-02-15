@@ -3,15 +3,12 @@ package pageObjects;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import utils.GeneralUtils;
 
 public class StammdatenPage {
     private final WebDriver webDriver;
-    GeneralUtils generalUtils;
 
     public StammdatenPage(WebDriver webDriver) {
         this.webDriver = webDriver;
-        generalUtils = new GeneralUtils(webDriver);
     }
 
     private final By benutzerkennung = By.id("origin-id-input-id");
@@ -21,10 +18,11 @@ public class StammdatenPage {
     private final By personnelHR = By.id("personnel_number_hr-input-id");
     private final By mobileNum = By.id("mobile-input-id");
     private final By eMail = By.id("email-address-input-id");
+    private final By dispositionButton = By.xpath("//div[@id='navigation_header-disposition-id']//button");
 
 
     public void fillStammdaten(String newBenutzerkennungValue, String newNachnameValue, String newVornameValue,
-                               String newPersonnelNum,String newPersonnelNumHR, String newMobileNum, String newEMail) {
+                               String newPersonnelNum, String newPersonnelNumHR, String newMobileNum, String newEMail) {
         setBenutzerkennung(newBenutzerkennungValue);
         setNachname(newNachnameValue);
         setVorname(newVornameValue);
@@ -64,6 +62,9 @@ public class StammdatenPage {
 
     public void setEMail(String newEMail) {
         changeField(webDriver.findElement(this.eMail), newEMail);
+    }
+    public void goToDisposition(){
+        webDriver.findElement(this.dispositionButton).click();
     }
 
 
