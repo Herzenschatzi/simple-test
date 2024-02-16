@@ -1,5 +1,6 @@
 package pageObjects;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -17,7 +18,7 @@ public class DispositionPage {
     public DispositionPage(WebDriver webDriver) {
         this.webDriver = webDriver;
     }
-
+    @Step("Fill Disposition")
     public void fillDisposition(String newPlzValue, String newOrtValue, String newStrasseValue,
                                 String newHausNummerValue, String newplannungsGruppeValue) {
         setPlz(newPlzValue);

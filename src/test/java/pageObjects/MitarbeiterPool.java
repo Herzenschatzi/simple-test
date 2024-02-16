@@ -1,5 +1,6 @@
 package pageObjects;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -15,7 +16,7 @@ public class MitarbeiterPool {
     public MitarbeiterPool(WebDriver webDriver) {
         this.webDriver = webDriver;
     }
-
+    @Step("Fill Mitarbeiter pool")
     public void fillMitarbeiterPool(String newAreaValue, String newActualPoolValue, String newHaupAreaValue, String newHauptPoolValue) {
         setArea(newAreaValue);
         setPool(newActualPoolValue);

@@ -4,6 +4,7 @@ import io.qameta.allure.Epic;
 import io.qameta.allure.Feature;
 import io.qameta.allure.Story;
 import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -20,18 +21,25 @@ import java.util.List;
 import static org.junit.Assert.assertEquals;
 
 public class AddTechnikerTest {
-    WebDriver driver = null;
+    private WebDriver driver = null;
+
+    @Before
+    public void setUp() {
+        driver = new ChromeDriver();
+    }
+
     @After
-    public void cleanUp(){
+    public void cleanUp() {
         if (driver != null)
             driver.quit();
     }
+
+
     @Test
     @Epic("Techniker App")
     @Feature("Add techniker")
     @Story("Add techniker Page")
     public void addTechniker() throws InterruptedException, IOException {
-        driver = new ChromeDriver();
         RessourcenPage ressourcenPage = new RessourcenPage(driver);
 
         //WebDriverWait waiter = new WebDriverWait(driver, Duration.ofSeconds(5));
@@ -79,7 +87,6 @@ public class AddTechnikerTest {
 
 
         Thread.sleep(2000);
-//@After
         ressourcenPage.goToRessourcenPage();
         Thread.sleep(2000);
 
@@ -103,7 +110,7 @@ public class AddTechnikerTest {
         Thread.sleep(1000);
 
         List<WebElement> elementsAfter = driver.findElements(By.xpath("//*[@id='single-spa-application:@ad-portal/workforce-resource-local']//div[contains(text(),'Keine Ergebnisse')]"));
-        assertEquals("Techniker exists",1, elementsAfter.size());
+        assertEquals("Techniker exists", 1, elementsAfter.size());
 
         Thread.sleep(1000);
 

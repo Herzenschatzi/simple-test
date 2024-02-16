@@ -29,7 +29,7 @@ public class RessourcenPage {
     public void selectEmployee() {
         webDriver.findElement(this.selectCheckbox).click();
     }
-
+    @Step("Delete Techniker")
     public void deleteEmployee() {
         webDriver.findElement(this.deleteButton).click();
     }
