@@ -4,6 +4,13 @@ import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.time.Duration;
+import java.util.List;
+
+import static org.junit.Assert.assertEquals;
 
 public class RessourcenPage {
     private final WebDriver webDriver;
@@ -46,10 +53,16 @@ public class RessourcenPage {
     }
 
     public void addButton() {
-        webDriver.findElement(this.addButton).click();
+        WebDriverWait wait = new WebDriverWait(webDriver, Duration.ofSeconds(10));
+        List<WebElement> elementsBefore = wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("//*[@id='single-spa-application:@ad-portal/workforce-resource-local']" +
+                "//div[contains(text(),'Keine Ergebnisse')]")));
+        assertEquals("Techniker already exists", 1, elementsBefore.size()); //(size = 0, Techniker exists, size = 1, Techniker dos not exists)
+
+        wait.until(ExpectedConditions.visibilityOfElementLocated(this.addButton)).click();
     }
     public void openFilter(){
-        webDriver.findElement(this.openFilter).click();
+        WebDriverWait wait = new WebDriverWait(webDriver, Duration.ofSeconds(10));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(this.openFilter)).click();
     }
 
 

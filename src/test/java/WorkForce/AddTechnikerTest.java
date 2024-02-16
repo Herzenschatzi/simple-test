@@ -46,17 +46,15 @@ public class AddTechnikerTest {
         //How to use waiter instead of all(?) sleeps in the test?
         //@Before
         ressourcenPage.goToRessourcenPage();
-        Thread.sleep(2000);
+
         ressourcenPage.openFilter();
+
         ressourcenPage.fillFilterTechniker("Anna123");
         Thread.sleep(2000);
         ressourcenPage.openFilter();
-        List<WebElement> elementsBefore = driver.findElements(By.xpath("//*[@id='single-spa-application:@ad-portal/workforce-resource-local']//div[contains(text(),'Keine Ergebnisse')]"));
-        assertEquals("Techniker already exists", 1, elementsBefore.size()); //(size = 0, Techniker exists, size = 1, Techniker dos not exists)
-
-        Thread.sleep(500);
 
         ressourcenPage.addButton();
+
 
         Thread.sleep(500);
 
