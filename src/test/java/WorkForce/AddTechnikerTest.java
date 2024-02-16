@@ -1,35 +1,42 @@
 package WorkForce;
 
 import org.junit.Test;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import pageObjects.DispositionPage;
 import pageObjects.MitarbeiterPool;
 import pageObjects.RessourcenPage;
 import pageObjects.StammdatenPage;
 
+import java.util.List;
+
+import static org.junit.Assert.assertEquals;
+
 public class AddTechnikerTest {
     @Test
     public void addTechniker() throws InterruptedException {
         WebDriver driver = new ChromeDriver();
         RessourcenPage ressourcenPage = new RessourcenPage(driver);
+
         //WebDriverWait waiter = new WebDriverWait(driver, Duration.ofSeconds(5));
         //How to use waiter instead of all(?) sleeps in the test?
+        //@Before
         ressourcenPage.goToRessourcenPage();
+        Thread.sleep(2000);
+        ressourcenPage.openFilter();
+        ressourcenPage.fillFilterTechniker("Anna123");
+        Thread.sleep(2000);
+        ressourcenPage.openFilter();
+        List<WebElement> elementsBefore = driver.findElements(By.xpath("//*[@id='single-spa-application:@ad-portal/workforce-resource-local']//div[contains(text(),'Keine Ergebnisse')]"));
+        assertEquals("Techniker already exists", 1, elementsBefore.size()); //(size = 0, Techniker exists, size = 1, Techniker dos not exists)
 
         Thread.sleep(500);
-        //@Before
-
-//        ressourcenPage.openFilter();
-//        Thread.sleep(500);
-//        ressourcenPage.fillFilterTechniker("Anna1230");
-//        Thread.sleep(500);
-
-        //Add if else check?
 
         ressourcenPage.addButton();
 
-        Thread.sleep(2000);
+        Thread.sleep(500);
 
         //go to the techniker creation form
         StammdatenPage stammdatenPage = new StammdatenPage(driver);
@@ -69,11 +76,20 @@ public class AddTechnikerTest {
         Thread.sleep(500);
         ressourcenPage.openFilter();
         Thread.sleep(500);
+
+        List<WebElement> elementsBeforeAdd = driver.findElements(By.xpath("//*[@id='single-spa-application:@ad-portal/workforce-resource-local']//div[contains(text(),'Keine Ergebnisse')]"));
+        assertEquals(0, elementsBeforeAdd.size());
+
+        Thread.sleep(500);
         ressourcenPage.selectEmployee();
         Thread.sleep(1000);
         ressourcenPage.deleteEmployee();
         Thread.sleep(1000);
         ressourcenPage.confirmDeleteEmployee();
+        Thread.sleep(1000);
+
+        List<WebElement> elementsAfter = driver.findElements(By.xpath("//*[@id='single-spa-application:@ad-portal/workforce-resource-local']//div[contains(text(),'Keine Ergebnisse')]"));
+        assertEquals("Techniker exists",1, elementsAfter.size());
 
         Thread.sleep(1000);
 

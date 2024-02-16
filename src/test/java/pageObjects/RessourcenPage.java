@@ -12,7 +12,7 @@ public class RessourcenPage {
     }
 
     private final By deleteButton = By.id("delete-employees");
-    private final By selectCheckbox = By.xpath("//*[@id='single-spa-application:@ad-portal/workforce-resource-local']//input[@aria-label='Select row']");
+    private final By selectCheckbox = By.xpath("//*[@id='single-spa-application:@ad-portal/workforce-resource-local']" + "//input[@aria-label='Select row']");
     private final By confirmDeleteButton = By.id("btn-confirm-delete");
     private final By addButton = By.xpath("//*[@id='single-spa-application:@ad-portal/workforce-resource-local']//a[@class='button_link']");
     private final By openFilter = By.xpath("//*[@id='single-spa-application:@ad-portal/workforce-resource-local']//button[@data-testid='filters_id']");
