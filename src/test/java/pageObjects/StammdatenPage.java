@@ -1,8 +1,12 @@
 package pageObjects;
 
+import io.qameta.allure.Allure;
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+
+import java.io.IOException;
 
 public class StammdatenPage {
     private final WebDriver webDriver;
@@ -20,9 +24,9 @@ public class StammdatenPage {
     private final By eMail = By.id("email-address-input-id");
     private final By dispositionButton = By.xpath("//div[@id='navigation_header-disposition-id']//button");
 
-
+@Step("Fill Stammdaten")
     public void fillStammdaten(String newBenutzerkennungValue, String newNachnameValue, String newVornameValue,
-                               String newPersonnelNum, String newPersonnelNumHR, String newMobileNum, String newEMail) {
+                               String newPersonnelNum, String newPersonnelNumHR, String newMobileNum, String newEMail) throws IOException {
         setBenutzerkennung(newBenutzerkennungValue);
         setNachname(newNachnameValue);
         setVorname(newVornameValue);
@@ -30,6 +34,7 @@ public class StammdatenPage {
         setPersonnelNumHR(newPersonnelNumHR);
         setMobilNum(newMobileNum);
         setEMail(newEMail);
+        Allure.addAttachment("Stammdaten",Utils.takeScreeenshot(webDriver));
     }
 
     public void setBenutzerkennung(String newBenutzerkennungValue) {

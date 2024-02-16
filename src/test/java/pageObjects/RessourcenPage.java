@@ -1,5 +1,6 @@
 package pageObjects;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -21,6 +22,7 @@ public class RessourcenPage {
     public void setFilterTechniker(String newFilterValue) {
         changeField(webDriver.findElement(this.filterTechniker), newFilterValue);
     }
+    @Step("Filter techniker")
     public void fillFilterTechniker(String newFilterValue){
         setFilterTechniker(newFilterValue);
     }
@@ -36,7 +38,7 @@ public class RessourcenPage {
         webDriver.findElement(this.confirmDeleteButton).click();
     }
 
-
+@Step("Open ressourcen page")
     public void goToRessourcenPage() {
 
         webDriver.get("http://localhost:3000/workforce-resource-local");

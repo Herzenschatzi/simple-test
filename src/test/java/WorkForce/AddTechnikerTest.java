@@ -1,5 +1,9 @@
 package WorkForce;
 
+import io.qameta.allure.Epic;
+import io.qameta.allure.Feature;
+import io.qameta.allure.Story;
+import org.junit.After;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -10,14 +14,24 @@ import pageObjects.MitarbeiterPool;
 import pageObjects.RessourcenPage;
 import pageObjects.StammdatenPage;
 
+import java.io.IOException;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 
 public class AddTechnikerTest {
+    WebDriver driver = null;
+    @After
+    public void cleanUp(){
+        if (driver != null)
+            driver.quit();
+    }
     @Test
-    public void addTechniker() throws InterruptedException {
-        WebDriver driver = new ChromeDriver();
+    @Epic("Techniker App")
+    @Feature("Add techniker")
+    @Story("Add techniker Page")
+    public void addTechniker() throws InterruptedException, IOException {
+        driver = new ChromeDriver();
         RessourcenPage ressourcenPage = new RessourcenPage(driver);
 
         //WebDriverWait waiter = new WebDriverWait(driver, Duration.ofSeconds(5));
@@ -92,9 +106,6 @@ public class AddTechnikerTest {
         assertEquals("Techniker exists",1, elementsAfter.size());
 
         Thread.sleep(1000);
-
-
-        driver.quit();
 
     }
 }
