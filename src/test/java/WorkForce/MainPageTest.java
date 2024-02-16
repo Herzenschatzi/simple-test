@@ -8,12 +8,14 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import pageObjects.DispositionPage;
+import pageObjects.MainPage;
 
 import java.time.Duration;
 
 import static org.junit.Assert.assertEquals;
 
-public class ResourceOpenTest {
+public class MainPageTest {
 
     @Test
     public void openTest() throws InterruptedException {
@@ -35,11 +37,13 @@ public class ResourceOpenTest {
             2. У найденного элемента найди в дочерних span, который содержит текст "Workforce Resource local"
 
          */
-        WebElement oneButton = driver.findElement(By.xpath("//*[@id=\"single-spa-application:@ad-portal/navbar\"]//span[contains(text(),'Workforce Resource local')]"));
-        oneButton.click();
+        MainPage mainPage = new MainPage(driver);
+        //WebElement oneButton = driver.findElement(By.xpath("//*[@id=\"single-spa-application:@ad-portal/navbar\"]//span[contains(text(),'Workforce Resource local')]"));
+        mainPage.oneButton();
 
-        WebElement resButton = driver.findElement(By.xpath("//*[@id=\"single-spa-application:@ad-portal/navbar\"]//*[contains(text(),'Ressourcen')]"));
-        waiter.until(ExpectedConditions.visibilityOf(resButton)).click();
+        //WebElement resButton = driver.findElement(By.xpath("//*[@id=\"single-spa-application:@ad-portal/navbar\"]//*[contains(text(),'Ressourcen')]"));
+        //waiter.until(ExpectedConditions.visibilityOf(resButton)).click();
+        mainPage.resButton();
 
         Assert.assertEquals("http://localhost:3000/workforce-resource-local", driver.getCurrentUrl());
 
